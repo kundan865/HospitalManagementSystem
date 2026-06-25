@@ -12,6 +12,8 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [loggedIn, setLoggedIn] = useState(true);
     const dispatch = useDispatch();
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [showProfile, setShowProfile] = useState(false);
 
     const logoutHandler = () => {
         setLoggedIn(false);
@@ -74,9 +76,20 @@ const Navbar = () => {
                 {
                     loggedIn ?
                         <div className='flex items-center gap-2 cursor-pointer group relative'>
-                            <img src={assets.profilePic} className='w-8 rounded-full' alt="" />
-                            <FaChevronDown className='w-2.5' />
-                            <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
+
+                            <div
+                                onClick={() => setShowProfile(prev => !prev)}
+                                className='flex items-center gap-2 z-50'
+                            >
+                                <img src={assets.profilePic} className='w-8 rounded-full' alt="" />
+
+                                <FaChevronDown className='w-2.5' />
+                            </div>
+
+                            {
+                                showProfile && (
+                                    // <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
+                                        <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 block'>
                                 <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
                                     <p onClick={() => navigate("/my-profile")} className='hover:text-black cursor-pointer'>My Profile</p>
 
@@ -85,6 +98,10 @@ const Navbar = () => {
                                     <p onClick={() => logoutHandler()} className='hover:text-black cursor-pointer'>Logout</p>
                                 </div>
                             </div>
+                                )
+                            }
+
+
                         </div> :
                         <button onClick={() => navigate("/signup")} className='bg-blue-500 text-white px-4 py-2 rounded-full'>
                             Create Account
@@ -94,22 +111,36 @@ const Navbar = () => {
 
                 <div className='flex sm:hidden md:hidden items-center gap-4'>
                     <div className='flex items-center gap-2 cursor-pointer group relative'>
-                        <MdMenu className='h-8 w-8' />
-                        <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
-                            <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
-                                <p onClick={() => navigate("/")} className='hover:text-black cursor-pointer'>Home</p>
 
-                                <p onClick={() => navigate("/doctors")} className='hover:text-black cursor-pointer'>All Doctors</p>
+                        <MdMenu
+                            className='h-8 w-8 z-50'
+                            // className='h-8 w-8 bg-red-500 cursor-pointer z-50 relative'
+                            onClick={() => setMenuOpen(prev => !prev)}
+                        />
 
-                                <p onClick={() => navigate("/about")} className='hover:text-black cursor-pointer'>About</p>
+                        {/* <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 hidden group-hover:block'> */}
 
-                                <p onClick={() => navigate("/contact")} className='hover:text-black cursor-pointer'>Contact</p>
-                            </div>
-                        </div>
+                        {
+                            menuOpen && (
+                                <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 block'>
+                                    <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
+                                        <p onClick={() => navigate("/")} className='hover:text-black cursor-pointer'>Home</p>
+
+                                        <p onClick={() => navigate("/doctors")} className='hover:text-black cursor-pointer'>All Doctors</p>
+
+                                        <p onClick={() => navigate("/about")} className='hover:text-black cursor-pointer'>About</p>
+
+                                        <p onClick={() => navigate("/contact")} className='hover:text-black cursor-pointer'>Contact</p>
+                                    </div>
+                                </div>
+                            )
+                        }
+
                     </div>
                 </div>
 
             </div>
+
         </div>
     )
 }
