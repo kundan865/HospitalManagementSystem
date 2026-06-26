@@ -88,16 +88,25 @@ const Navbar = () => {
 
                             {
                                 showProfile && (
-                                    // <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
-                                        <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 block'>
-                                <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
-                                    <p onClick={() => navigate("/my-profile")} className='hover:text-black cursor-pointer'>My Profile</p>
+                                    <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 block'>
 
-                                    <p onClick={() => navigate("/my-appointments")} className='hover:text-black cursor-pointer'>My Appointments</p>
+                                        <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
 
-                                    <p onClick={() => logoutHandler()} className='hover:text-black cursor-pointer'>Logout</p>
-                                </div>
-                            </div>
+                                            <p onClick={() => {
+                                                navigate("/my-profile")
+                                                setShowProfile(prev => !prev)
+                                            }}
+                                                className='hover:text-black cursor-pointer'>My Profile</p>
+
+                                            <p onClick={() => {
+                                                navigate("/my-appointments")
+                                                setShowProfile(prev => !prev);
+                                            }}
+                                                className='hover:text-black cursor-pointer'>My Appointments</p>
+
+                                            <p onClick={() => logoutHandler()} className='hover:text-black cursor-pointer'>Logout</p>
+                                        </div>
+                                    </div>
                                 )
                             }
 
@@ -113,24 +122,38 @@ const Navbar = () => {
                     <div className='flex items-center gap-2 cursor-pointer group relative'>
 
                         <MdMenu
-                            className='h-8 w-8 z-50'
-                            // className='h-8 w-8 bg-red-500 cursor-pointer z-50 relative'
+                            className='h-8 w-8 z-50 relative'
                             onClick={() => setMenuOpen(prev => !prev)}
                         />
-
-                        {/* <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 hidden group-hover:block'> */}
 
                         {
                             menuOpen && (
                                 <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 block'>
                                     <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
-                                        <p onClick={() => navigate("/")} className='hover:text-black cursor-pointer'>Home</p>
 
-                                        <p onClick={() => navigate("/doctors")} className='hover:text-black cursor-pointer'>All Doctors</p>
+                                        <p
+                                            onClick={() => {
+                                                navigate("/");
+                                                setMenuOpen(prev => !prev)
+                                            }}
+                                            className='hover:text-black cursor-pointer'>Home</p>
 
-                                        <p onClick={() => navigate("/about")} className='hover:text-black cursor-pointer'>About</p>
+                                        <p
+                                            onClick={() => {
+                                                navigate("/doctors")
+                                                setMenuOpen(prev => !prev)
+                                            }}
+                                            className='hover:text-black cursor-pointer'>All Doctors</p>
 
-                                        <p onClick={() => navigate("/contact")} className='hover:text-black cursor-pointer'>Contact</p>
+                                        <p onClick={() => {
+                                            navigate("/about")
+                                            setMenuOpen(prev => !prev)
+                                        }} className='hover:text-black cursor-pointer'>About</p>
+
+                                        <p onClick={() => {
+                                            navigate("/contact")
+                                            setMenuOpen(prev => !prev)
+                                        }} className='hover:text-black cursor-pointer'>Contact</p>
                                     </div>
                                 </div>
                             )

@@ -40,17 +40,35 @@ const Doctors = () => {
                 <div className='absolute top-0 right-0 pt-10 text-base font-medium text-gray-600 z-20 block'>
 
                   <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
-                    <p onClick={() => navigate("/doctors/cardiologist")} className='hover:text-black cursor-pointer'>Cardiologist</p>
+                    <p onClick={() => {
+                      navigate("/doctors/cardiologist")
+                      setMenuOpen(prev => !prev)
+                    }} className='hover:text-black cursor-pointer'>Cardiologist</p>
 
-                    <p onClick={() => navigate("/doctors/dermatologist")} className='hover:text-black cursor-pointer'>Dermatologist</p>
+                    <p onClick={() => {
+                      navigate("/doctors/dermatologist")
+                      setMenuOpen(prev => !prev)
+                    }} className='hover:text-black cursor-pointer'>Dermatologist</p>
 
-                    <p onClick={() => navigate("/doctors/orthopedic")} className='hover:text-black cursor-pointer'>Orthopedic</p>
+                    <p onClick={() => {
+                      navigate("/doctors/orthopedic")
+                      setMenuOpen(prev => !prev)
+                    }} className='hover:text-black cursor-pointer'>Orthopedic</p>
 
-                    <p onClick={() => navigate("/doctors/pediatrician")} className='hover:text-black cursor-pointer'>pediatrician</p>
+                    <p onClick={() => {
+                      navigate("/doctors/pediatrician")
+                      setMenuOpen(prev => !prev)
+                    }} className='hover:text-black cursor-pointer'>pediatrician</p>
 
-                    <p onClick={() => navigate("/doctors/neurologist")} className='hover:text-black cursor-pointer'>Neurologist</p>
+                    <p onClick={() => {
+                      navigate("/doctors/neurologist")
+                      setMenuOpen(prev => !prev)
+                    }} className='hover:text-black cursor-pointer'>Neurologist</p>
 
-                    <p onClick={() => navigate("/doctors")} className='hover:text-black cursor-pointer'>All Doctors</p>
+                    <p onClick={() => {
+                      navigate("/doctors")
+                      setMenuOpen(prev => !prev)
+                    }} className='hover:text-black cursor-pointer'>All Doctors</p>
                   </div>
                 </div>
               )
